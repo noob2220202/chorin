@@ -4,6 +4,8 @@ from telegram.constants import ParseMode
 import config
 from utils.formatter import build_caption, build_button_text
 
+BOT_USERNAME = "chorin_replicabot"
+
 
 async def post_to_channel(bot, brand: str, name: str, sizes: list[str], features: str, photo_paths: list[str]):
     """채널에 옷 정보를 앨범 + 버튼 형식으로 게시합니다."""
@@ -36,7 +38,7 @@ async def post_to_channel(bot, brand: str, name: str, sizes: list[str], features
         parse_mode=ParseMode.MARKDOWN_V2,
         reply_to_message_id=first_msg_id,
         reply_markup=InlineKeyboardMarkup([[
-            InlineKeyboardButton("🛒 구매하기", callback_data="buy_start")
+            InlineKeyboardButton("🛒 구매하기", url=f"https://t.me/{BOT_USERNAME}?start=buy")
         ]]),
     )
 
