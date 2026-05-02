@@ -35,3 +35,7 @@ def build_caption(brand: str, name: str, sizes: list[str], features: str) -> str
     ]
 
     return "\n".join(lines)
+
+
+def build_button_text() -> str:
+    return "💬 _문의 및 구매는 아래 버튼을 눌러주세요\\!_"
