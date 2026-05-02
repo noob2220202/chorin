@@ -22,4 +22,4 @@ if __name__ == "__main__":
 
     flask_app = create_app()
     print(f"서버 시작: http://{config.HOST}:{config.PORT}")
-    socketio.run(flask_app, host=config.HOST, port=config.PORT)
+    socketio.run(flask_app, host=config.HOST, port=config.PORT, allow_unsafe_werkzeug=True)
