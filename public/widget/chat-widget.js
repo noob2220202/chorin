@@ -36,7 +36,7 @@
   function loadSocketIO(cb) {
     if (window.io) { cb(); return; }
     const s = document.createElement('script');
-    s.src = SERVER_URL + '/socket.io/socket.io.js';
+    s.src = 'https://cdn.socket.io/4.7.5/socket.io.min.js';
     s.onload = cb;
     document.head.appendChild(s);
   }

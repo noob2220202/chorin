@@ -1,5 +1,6 @@
 import asyncio
 import os
+import uuid
 from flask import Blueprint, request, jsonify, send_from_directory, abort
 from werkzeug.utils import secure_filename
 import config
@@ -67,7 +68,8 @@ def api_post():
         f.seek(0)
         if size > max_bytes:
             return jsonify({"error": f"파일 크기 초과: {f.filename}"}), 400
-        fname = secure_filename(f.filename)
+        ext = secure_filename(f.filename).rsplit('.', 1)[-1].lower()
+        fname = f"{uuid.uuid4().hex}.{ext}"
         path = os.path.join(config.UPLOAD_DIR, fname)
         f.save(path)
         photo_paths.append(path)

@@ -8,7 +8,8 @@ from typing import Optional
 
 _sessions: dict = {}
 _lock = threading.Lock()
-_DATA_FILE = os.path.join("data", "sessions.json")
+_BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_DATA_FILE = os.path.join(_BASE_DIR, "data", "sessions.json")
 _save_timer: Optional[threading.Timer] = None
 
 
