@@ -162,6 +162,7 @@ textarea:focus {
 
 /* Photo upload */
 .drop-zone {
+  position: relative;
   border: 2px dashed var(--border);
   border-radius: var(--radius);
   padding: 28px 20px;
@@ -170,6 +171,17 @@ textarea:focus {
   transition: all 0.2s;
   color: var(--text-muted);
   font-size: 0.9rem;
+}
+
+/* input을 드롭존 전체에 투명하게 올려서 모바일도 클릭 가능 */
+.drop-zone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 0;
 }
 
 .drop-zone:hover, .drop-zone.dragover {

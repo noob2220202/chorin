@@ -205,8 +205,6 @@ function updatePreview() {
 const dropZone = document.getElementById('dropZone');
 const photoInput = document.getElementById('photoInput');
 
-dropZone.addEventListener('click', () => photoInput.click());
-
 dropZone.addEventListener('dragover', e => {
   e.preventDefault();
   dropZone.classList.add('dragover');

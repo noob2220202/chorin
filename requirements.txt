@@ -1,6 +1,5 @@
 flask>=3.0
 flask-socketio>=5.3
 python-telegram-bot>=21.0
-eventlet
 python-dotenv
 Werkzeug>=3.0
