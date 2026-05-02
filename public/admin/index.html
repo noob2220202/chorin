@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>레플리카 옷 봇 관리자</title>
+  <link rel="stylesheet" href="/static/admin/admin.css" />
+</head>
+<body>
+
+<header>
+  <span>👔</span>
+  <h1>레플리카 봇 어드민</h1>
+  <div class="status-dot" id="statusDot" title="서버 연결 상태"></div>
+</header>
+
+<div class="main">
+
+  <!-- 좌측: 게시 폼 -->
+  <div class="post-panel">
+    <div class="panel-header">📤 채널에 게시</div>
+    <div class="post-form-wrap">
+
+      <div class="form-group">
+        <label for="brand">브랜드</label>
+        <input type="text" id="brand" placeholder="예) Nike, Gucci, Supreme" />
+      </div>
+
+      <div class="form-group">
+        <label for="clothName">옷 이름</label>
+        <input type="text" id="clothName" placeholder="예) 에어맥스 90, 로고 후드티" />
+      </div>
+
+      <div class="form-group">
+        <label>사이즈</label>
+        <div class="size-tags">
+          <input class="size-tag" type="checkbox" id="sXS" value="XS" />
+          <label for="sXS">XS</label>
+          <input class="size-tag" type="checkbox" id="sS" value="S" />
+          <label for="sS">S</label>
+          <input class="size-tag" type="checkbox" id="sM" value="M" checked />
+          <label for="sM">M</label>
+          <input class="size-tag" type="checkbox" id="sL" value="L" checked />
+          <label for="sL">L</label>
+          <input class="size-tag" type="checkbox" id="sXL" value="XL" checked />
+          <label for="sXL">XL</label>
+          <input class="size-tag" type="checkbox" id="sXXL" value="XXL" />
+          <label for="sXXL">XXL</label>
+          <input class="size-tag" type="checkbox" id="sFree" value="FREE" />
+          <label for="sFree">FREE</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="features">특징</label>
+        <textarea id="features" rows="3" placeholder="예) 최고급 원단 사용, 로고 자수 정품 동일, 통기성 우수"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>사진 (최대 10장)</label>
+        <div class="drop-zone" id="dropZone">
+          📷 클릭하거나 사진을 드래그하세요
+          <input type="file" id="photoInput" accept="image/*" multiple style="display:none" />
+        </div>
+        <div class="photo-previews" id="photoPreviews"></div>
+      </div>
+
+      <div class="form-group">
+        <label>텔레그램 미리보기</label>
+        <div class="tg-preview" id="tgPreview">브랜드와 옷 이름을 입력하면 미리보기가 표시됩니다.</div>
+        <div class="tg-preview-btn">🛒 구매하기</div>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="submitPost()">
+        📢 채널에 게시하기
+      </button>
+
+    </div>
+  </div>
+
+  <!-- 우측: 채팅 패널 -->
+  <div class="chat-panel">
+
+    <!-- 세션 목록 -->
+    <div class="session-list">
+      <div class="panel-header">
+        💬 상담 목록
+        <span class="unread-total" id="unreadTotal">0</span>
+      </div>
+      <div class="session-items" id="sessionItems">
+        <div style="padding:20px;color:var(--text-muted);font-size:0.85rem;text-align:center;">
+          아직 상담이 없습니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 채팅창 -->
+    <div class="chat-window">
+      <div class="chat-header" id="chatHeader" style="display:none">
+        <span id="chatHeaderType" class="session-type-tag"></span>
+        <span class="chat-header-name" id="chatHeaderName"></span>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-empty">상담을 선택하면 대화 내용이 표시됩니다.</div>
+      </div>
+
+      <div class="chat-input-area">
+        <textarea class="chat-input" id="chatInput" placeholder="답장 입력 후 Enter" rows="1"
+          onkeydown="handleChatKey(event)"></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendReply()" disabled>전송</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/static/admin/admin.js"></script>
+</body>
+</html>
